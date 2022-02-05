@@ -1,0 +1,66 @@
+﻿@model GSA_DBF.Models.Classificacao
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Classificacao</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nota)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nota)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.obs)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.obs)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Aluno.nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Aluno.nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Epoca.nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Epoca.nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UC.nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UC.nome)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

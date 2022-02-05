@@ -1,0 +1,259 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="gsa_dbaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Aluno">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="nome" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Classificacao">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="nome" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="id_aluno" Type="int" />
+          <Property Name="id_uc" Type="int" />
+          <Property Name="id_epoca" Type="int" />
+          <Property Name="nota" Type="int" />
+          <Property Name="obs" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Epoca">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="nome" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UC">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="nome" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <Association Name="FK_Classificacao_Aluno">
+          <End Role="Aluno" Type="Self.Aluno" Multiplicity="0..1" />
+          <End Role="Classificacao" Type="Self.Classificacao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Aluno">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Classificacao">
+              <PropertyRef Name="id_aluno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Classificacao_Epoca">
+          <End Role="Epoca" Type="Self.Epoca" Multiplicity="0..1" />
+          <End Role="Classificacao" Type="Self.Classificacao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Epoca">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Classificacao">
+              <PropertyRef Name="id_epoca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Classificacao_UC">
+          <End Role="UC" Type="Self.UC" Multiplicity="0..1" />
+          <End Role="Classificacao" Type="Self.Classificacao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UC">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Classificacao">
+              <PropertyRef Name="id_uc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="gsa_dbaModelStoreContainer">
+          <EntitySet Name="Aluno" EntityType="Self.Aluno" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Classificacao" EntityType="Self.Classificacao" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Epoca" EntityType="Self.Epoca" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UC" EntityType="Self.UC" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Classificacao_Aluno" Association="Self.FK_Classificacao_Aluno">
+            <End Role="Aluno" EntitySet="Aluno" />
+            <End Role="Classificacao" EntitySet="Classificacao" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Classificacao_Epoca" Association="Self.FK_Classificacao_Epoca">
+            <End Role="Epoca" EntitySet="Epoca" />
+            <End Role="Classificacao" EntitySet="Classificacao" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Classificacao_UC" Association="Self.FK_Classificacao_UC">
+            <End Role="UC" EntitySet="UC" />
+            <End Role="Classificacao" EntitySet="Classificacao" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="gsa_dbaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Aluno">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="nome" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Classificacao" Relationship="Self.FK_Classificacao_Aluno" FromRole="Aluno" ToRole="Classificacao" />
+        </EntityType>
+        <EntityType Name="Classificacao">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="nome" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="id_aluno" Type="Int32" />
+          <Property Name="id_uc" Type="Int32" />
+          <Property Name="id_epoca" Type="Int32" />
+          <Property Name="nota" Type="Int32" />
+          <Property Name="obs" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Aluno" Relationship="Self.FK_Classificacao_Aluno" FromRole="Classificacao" ToRole="Aluno" />
+          <NavigationProperty Name="Epoca" Relationship="Self.FK_Classificacao_Epoca" FromRole="Classificacao" ToRole="Epoca" />
+          <NavigationProperty Name="UC" Relationship="Self.FK_Classificacao_UC" FromRole="Classificacao" ToRole="UC" />
+        </EntityType>
+        <EntityType Name="Epoca">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="nome" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Classificacao" Relationship="Self.FK_Classificacao_Epoca" FromRole="Epoca" ToRole="Classificacao" />
+        </EntityType>
+        <EntityType Name="UC">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="nome" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Classificacao" Relationship="Self.FK_Classificacao_UC" FromRole="UC" ToRole="Classificacao" />
+        </EntityType>
+        <Association Name="FK_Classificacao_Aluno">
+          <End Role="Aluno" Type="Self.Aluno" Multiplicity="0..1" />
+          <End Role="Classificacao" Type="Self.Classificacao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Aluno">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Classificacao">
+              <PropertyRef Name="id_aluno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Classificacao_Epoca">
+          <End Role="Epoca" Type="Self.Epoca" Multiplicity="0..1" />
+          <End Role="Classificacao" Type="Self.Classificacao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Epoca">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Classificacao">
+              <PropertyRef Name="id_epoca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Classificacao_UC">
+          <End Role="UC" Type="Self.UC" Multiplicity="0..1" />
+          <End Role="Classificacao" Type="Self.Classificacao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UC">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Classificacao">
+              <PropertyRef Name="id_uc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="gsa_dbaEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Aluno" EntityType="Self.Aluno" />
+          <EntitySet Name="Classificacao" EntityType="Self.Classificacao" />
+          <EntitySet Name="Epoca" EntityType="Self.Epoca" />
+          <EntitySet Name="UC" EntityType="Self.UC" />
+          <AssociationSet Name="FK_Classificacao_Aluno" Association="Self.FK_Classificacao_Aluno">
+            <End Role="Aluno" EntitySet="Aluno" />
+            <End Role="Classificacao" EntitySet="Classificacao" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Classificacao_Epoca" Association="Self.FK_Classificacao_Epoca">
+            <End Role="Epoca" EntitySet="Epoca" />
+            <End Role="Classificacao" EntitySet="Classificacao" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Classificacao_UC" Association="Self.FK_Classificacao_UC">
+            <End Role="UC" EntitySet="UC" />
+            <End Role="Classificacao" EntitySet="Classificacao" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="gsa_dbaModelStoreContainer" CdmEntityContainer="gsa_dbaEntities1">
+          <EntitySetMapping Name="Aluno">
+            <EntityTypeMapping TypeName="gsa_dbaModel.Aluno">
+              <MappingFragment StoreEntitySet="Aluno">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Classificacao">
+            <EntityTypeMapping TypeName="gsa_dbaModel.Classificacao">
+              <MappingFragment StoreEntitySet="Classificacao">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="id_aluno" ColumnName="id_aluno" />
+                <ScalarProperty Name="id_uc" ColumnName="id_uc" />
+                <ScalarProperty Name="id_epoca" ColumnName="id_epoca" />
+                <ScalarProperty Name="nota" ColumnName="nota" />
+                <ScalarProperty Name="obs" ColumnName="obs" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Epoca">
+            <EntityTypeMapping TypeName="gsa_dbaModel.Epoca">
+              <MappingFragment StoreEntitySet="Epoca">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UC">
+            <EntityTypeMapping TypeName="gsa_dbaModel.UC">
+              <MappingFragment StoreEntitySet="UC">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

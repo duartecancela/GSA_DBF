@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9b17b21a9d4e4cd1ad9c5ee3a0e6e6e2" Name="Diagram1">
+        <EntityTypeShape EntityType="gsa_dbaModel.Aluno" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="gsa_dbaModel.Classificacao" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="gsa_dbaModel.Epoca" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="gsa_dbaModel.UC" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
+        <AssociationConnector Association="gsa_dbaModel.FK_Classificacao_Aluno" ManuallyRouted="false" />
+        <AssociationConnector Association="gsa_dbaModel.FK_Classificacao_Epoca" ManuallyRouted="false" />
+        <AssociationConnector Association="gsa_dbaModel.FK_Classificacao_UC" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
