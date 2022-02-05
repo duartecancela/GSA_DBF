@@ -131,6 +131,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Alunos\AlunosAreaRegistration.cs" />
     <Compile Include="Areas\Alunos\Controllers\AlunoesController.cs" />
+    <Compile Include="Areas\Alunos\Controllers\ClassificacaoController.cs" />
     <Compile Include="Areas\Alunos\Controllers\ClassificacaosController.cs" />
     <Compile Include="Areas\Alunos\Controllers\EpocasController.cs" />
     <Compile Include="Areas\Alunos\Controllers\UCsController.cs" />
@@ -218,6 +219,8 @@
     <Content Include="Areas\Alunos\Views\Epocas\Details.cshtml" />
     <Content Include="Areas\Alunos\Views\Epocas\Edit.cshtml" />
     <Content Include="Areas\Alunos\Views\Epocas\Index.cshtml" />
+    <Content Include="Areas\Alunos\Views\Classificacao\Index.cshtml" />
+    <Content Include="Areas\Alunos\Views\Classificacao\Average.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
