@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "AverageInput";
+}
+
+<h2>AverageInput</h2>
+
+<form asp-controller="Classificacao" asp-action="AverageResult" method="post">
+    <p>
+        <label for="disciplina">Disciplina:</label><br>
+
+        <input type="text" name="disciplina" />
+
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+
+<h2>@ViewBag.disciplina</h2>
+

@@ -21,10 +21,34 @@ namespace GSA_DBF.Areas.Alunos.Controllers
             return View(classificacao.ToList());
         }
 
-        public ActionResult Average()
+        //[HttpPost]
+        public ActionResult AverageResult()
         {
+            //string strDisciplina = form["disciplina"].ToString();
+            //ViewBag.disciplina = strDisciplina;
             var classificacao = db.Classificacao.Where(c => c.id_uc == 1);
-            return View(classificacao.ToList());
+            var cl = classificacao.ToList();
+            var count = classificacao.Count();
+            var sum = classificacao.Sum(x => x.nota);
+            ViewBag.Total = sum / count;
+
+            return View(cl);
+            
+        }
+
+       /* [HttpPost]
+        public ActionResult AverageInput(FormCollection form)
+        {
+            string strDisciplina = form["disciplina"].ToString();
+            ViewBag.disciplina = strDisciplina;
+            //var classificacao = db.Classificacao.Where(c => c.id_uc == 1);
+            //return View(classificacao.ToList());
+            return View();
+        }*/
+
+        public ActionResult AverageInput()
+        {
+            return View();
         }
     }
 }

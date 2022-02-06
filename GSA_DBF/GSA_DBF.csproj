@@ -220,7 +220,8 @@
     <Content Include="Areas\Alunos\Views\Epocas\Edit.cshtml" />
     <Content Include="Areas\Alunos\Views\Epocas\Index.cshtml" />
     <Content Include="Areas\Alunos\Views\Classificacao\Index.cshtml" />
-    <Content Include="Areas\Alunos\Views\Classificacao\Average.cshtml" />
+    <Content Include="Areas\Alunos\Views\Classificacao\AverageResult.cshtml" />
+    <Content Include="Areas\Alunos\Views\Classificacao\AverageInput.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
