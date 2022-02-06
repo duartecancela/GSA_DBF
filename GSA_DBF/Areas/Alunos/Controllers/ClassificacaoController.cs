@@ -22,11 +22,16 @@ namespace GSA_DBF.Areas.Alunos.Controllers
         }
 
         //[HttpPost]
-        public ActionResult AverageResult()
+        public ActionResult AverageResult(FormCollection form)
         {
-            //string strDisciplina = form["disciplina"].ToString();
-            //ViewBag.disciplina = strDisciplina;
-            var classificacao = db.Classificacao.Where(c => c.id_uc == 1);
+            //var disciplina = "DAW";
+            var disciplina = form["disciplina"].ToString();
+            var epoca = form["epoca"].ToString();
+            var idUc = db.UC.Where(u => u.nome.Contains(disciplina)).SingleOrDefault()?.Id;
+            var idEpoca = db.Epoca.Where(u => u.nome.Contains(epoca)).SingleOrDefault()?.Id;
+
+            var classificacao = db.Classificacao.Where(c => c.id_uc == idUc).Where(c => c.id_epoca == idEpoca);
+
             var cl = classificacao.ToList();
             var count = classificacao.Count();
             var sum = classificacao.Sum(x => x.nota);
@@ -36,7 +41,7 @@ namespace GSA_DBF.Areas.Alunos.Controllers
             
         }
 
-       /* [HttpPost]
+        /*[HttpPost]
         public ActionResult AverageInput(FormCollection form)
         {
             string strDisciplina = form["disciplina"].ToString();
@@ -46,8 +51,19 @@ namespace GSA_DBF.Areas.Alunos.Controllers
             return View();
         }*/
 
+        [HttpGet]
         public ActionResult AverageInput()
         {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Average(FormCollection form)
+        {
+            string strDisciplina = form["disciplina"].ToString();
+            ViewBag.disciplina = strDisciplina;
+            //var classificacao = db.Classificacao.Where(c => c.id_uc == 1);
+            //return View(classificacao.ToList());
             return View();
         }
     }

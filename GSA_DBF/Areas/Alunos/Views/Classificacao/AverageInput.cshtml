@@ -4,16 +4,20 @@
 }
 
 <h2>AverageInput</h2>
+<h3>Introduza o nome da disciplina</h3>
 
-<form asp-controller="Classificacao" asp-action="AverageResult" method="post">
-    <p>
-        <label for="disciplina">Disciplina:</label><br>
+@using (Html.BeginForm("AverageResult", "Classificacao", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
 
-        <input type="text" name="disciplina" />
+<p>
 
-        <input type="submit" value="Filter" />
-    </p>
-</form>
+    <label for="disciplina">Disciplina:</label><br>
+    <input type="text" name="disciplina" /><br />
+    <label for="epoca">Epoca:</label><br>
+    <input type="text" name="epoca" />
+    <input type="submit" value="Filter" />
+</p>
+}
 
-<h2>@ViewBag.disciplina</h2>
 
